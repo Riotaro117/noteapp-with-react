@@ -2,6 +2,8 @@ import { useState } from 'react';
 import './App.css';
 import Main from './components/Main';
 import Sidebar from './components/Sidebar';
+import uuid from 'react-uuid';
+
 
 function App() {
   // サイドバーのノートの状態を管理
@@ -11,7 +13,7 @@ function App() {
     console.log('新しくノートが追加されました');
 
     const newNote = {
-      id: 1,
+      id: uuid(),
       title: '新しいノート',
       content: '新しいノートの内容',
       modDate: Date.now(),
@@ -22,7 +24,7 @@ function App() {
   };
   return (
     <div className="App">
-      <Sidebar onAddNote={onAddNote} />
+      <Sidebar onAddNote={onAddNote} notes={notes} />
       <Main />
     </div>
   );
