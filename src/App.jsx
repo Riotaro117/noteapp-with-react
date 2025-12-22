@@ -29,6 +29,12 @@ function App() {
     const filteredNotes = notes.filter((note) => note.id !== id);
     setNotes(filteredNotes);
   };
+
+  const getActiveNote = () => {
+    // findメソッドで最初に一致した物だけを返す
+    return notes.find((note) => note.id === activeNote);
+  };
+
   return (
     <div className="App">
       <Sidebar
@@ -38,7 +44,7 @@ function App() {
         activeNote={activeNote}
         setActiveNote={setActiveNote}
       />
-      <Main />
+      <Main activeNote={getActiveNote()}  />
     </div>
   );
 }
