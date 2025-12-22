@@ -30,10 +30,13 @@ function App() {
     setNotes(filteredNotes);
   };
 
-  const getActiveNote = () => {
-    // findメソッドで最初に一致した物だけを返す
-    return notes.find((note) => note.id === activeNote);
-  };
+  // const getActiveNote = () => {
+  //   // findメソッドで最初に一致した物だけを返す
+  //   return notes.find((note) => note.id === activeNote);
+  // };
+
+  // activeNoteはidのみなので、オブジェクトとして加工して渡す
+  const activeNoteData = notes.find((note) => note.id === activeNote);
 
   return (
     <div className="App">
@@ -44,7 +47,8 @@ function App() {
         activeNote={activeNote}
         setActiveNote={setActiveNote}
       />
-      <Main activeNote={getActiveNote()}  />
+      {/* <Main activeNote={getActiveNote()} /> */}
+      <Main activeNote={activeNoteData} />
     </div>
   );
 }
