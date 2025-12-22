@@ -1,12 +1,12 @@
 import React from 'react';
 import './Main.css';
 
-const Main = ({ activeNote }) => {
-  if (!activeNote) {
+const Main = ({ activeNoteData }) => {
+  if (!activeNoteData) {
     return <div className='no-active-note'>ノートが選択されていません</div>;
   }
   // getActiveNote();
-  console.log(activeNote)
+  console.log(activeNoteData)
   return (
     <div className="app-main">
       <div className="app-main-note-edit">
@@ -14,8 +14,8 @@ const Main = ({ activeNote }) => {
         <textarea id="" placeholder="ノート内容を記入"></textarea>
       </div>
       <div className="app-main-note-preview">
-        <h1 className="preview-title">{activeNote.title}</h1>
-        <div className="markdown-preview">{activeNote.content}</div>
+        <h1 className="preview-title">{activeNoteData.title}</h1>
+        <div className="markdown-preview">{activeNoteData.content}</div>
       </div>
     </div>
   );

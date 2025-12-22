@@ -35,7 +35,7 @@ function App() {
   //   return notes.find((note) => note.id === activeNote);
   // };
 
-  // activeNoteはidのみなので、オブジェクトとして加工して渡す
+  // activeNoteはidなので、オブジェクトとして加工して渡す
   const activeNoteData = notes.find((note) => note.id === activeNote);
 
   return (
@@ -48,7 +48,7 @@ function App() {
         setActiveNote={setActiveNote}
       />
       {/* <Main activeNote={getActiveNote()} /> */}
-      <Main activeNote={activeNoteData} />
+      <Main activeNoteData={activeNoteData} />
     </div>
   );
 }
