@@ -1,7 +1,7 @@
 import React from 'react';
 import './Sidebar.css';
 
-const Sidebar = ({ onAddNote, notes }) => {
+const Sidebar = ({ onAddNote, notes, onDeleteNote, activeNote, setActiveNote }) => {
   return (
     <div className="app-sidebar">
       <div className="app-sidebar-header">
@@ -11,10 +11,15 @@ const Sidebar = ({ onAddNote, notes }) => {
       <div className="app-sidebar-notes">
         {notes.map((note) => {
           return (
-            <div key={note.id} className="app-sidebar-note">
+            <div
+              key={note.id}
+              className={`app-sidebar-note ${note.id === activeNote && "active"}`}
+              onClick={() => setActiveNote(note.id)}
+            >
               <div className="sidebar-note-title">
                 <strong>{note.title}</strong>
-                <button>削除</button>
+                {/* 引数に入ってくるのはeなので、イベントハンドラーの中のみ書く */}
+                <button onClick={() => onDeleteNote(note.id)}>削除</button>
               </div>
               <p>{note.content}</p>
               <small>
