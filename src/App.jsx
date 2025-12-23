@@ -16,7 +16,7 @@ function App() {
     const newNote = {
       id: uuid(),
       title: '新しいノート',
-      content: '新しいノートの内容',
+      content: '',
       modDate: Date.now(),
     };
     // 元の配列をコピーして新しいオブジェクトを追加していく
@@ -38,6 +38,18 @@ function App() {
   // activeNoteはidなので、オブジェクトとして加工して渡す
   const activeNoteData = notes.find((note) => note.id === activeNote);
 
+  const onUpdateNote = (updateNote) => {
+    // 修正された新しいノートの配列を返す。
+    const updatedNotesArray = notes.map((note) => {
+      if (note.id === updateNote.id) {
+        return updateNote;
+      } else {
+        return note;
+      }
+    });
+    setNotes(updatedNotesArray);
+  };
+
   return (
     <div className="App">
       <Sidebar
@@ -48,7 +60,7 @@ function App() {
         setActiveNote={setActiveNote}
       />
       {/* <Main activeNote={getActiveNote()} /> */}
-      <Main activeNoteData={activeNoteData} />
+      <Main activeNoteData={activeNoteData} onUpdateNote={onUpdateNote} />
     </div>
   );
 }
