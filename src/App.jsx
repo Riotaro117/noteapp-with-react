@@ -6,15 +6,22 @@ import uuid from 'react-uuid';
 
 function App() {
   // サイドバーのノートの状態を管理、ローカルストレージからJavaScript形式で取ってくるために初期値の変更
-  const [notes, setNotes] = useState(JSON.parse(localStorage.getItem('notes') || []));
+  // const [notes, setNotes] = useState(JSON.parse(localStorage.getItem('notes') || []));
+  const [notes, setNotes] = useState(JSON.parse(localStorage.getItem("notes")));
   // activeなノートの状態を管理,これはidが引数に入るため、最初はnullにしておくこと
-  const [activeNote, setActiveNote] = useState(null);
+  // const [activeNote, setActiveNote] = useState(null);
+  const [activeNote, setActiveNote] = useState(notes.length > 0 ? notes[0].id : null);
 
   // noteが変更されるたびにローカルストレージに保存されて欲しいから副作用
   useEffect(() => {
     // ローカルストレージにノートを保存する,ただし、JSON形式で保存すること
     localStorage.setItem('notes', JSON.stringify(notes));
   }, [notes]);
+
+  // 読み込まれた時だけ一番上のノートを選択する
+  // useEffect(() => {
+  //   setActiveNote(notes[0].id)
+  // }, []);
 
   const onAddNote = () => {
     console.log('新しくノートが追加されました');
